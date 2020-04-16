@@ -6,7 +6,7 @@
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
 
-from ._util import midpoint_root, robinson_foulds
+from ._util import midpoint_root, robinson_foulds, lca_root
 from ._fasttree import fasttree
 from ._raxml import raxml, raxml_rapid_bootstrap
 from ._iqtree import iqtree, iqtree_ultrafast_bootstrap

@@ -396,7 +396,8 @@ plugin.methods.register_function(
     function=q2_phylogeny.filter_table,
     inputs={'table': FeatureTable[Frequency],
             'tree': Phylogeny[Rooted | Unrooted]},
-    parameters={},
+    parameters={
+    },
     outputs=[('filtered_table', FeatureTable[Frequency])],
     input_descriptions={
         'table': 'Feature table that features should be filtered from.',
@@ -442,6 +443,36 @@ plugin.methods.register_function(
                 " between two or more phylogenetic trees.",
     citations=[citations['robinson1981comparison']]
 )
+
+
+plugin.methods.register_function(
+    function=q2_phylogeny.lca_root,
+    inputs={
+        'tree': Phylogeny[Rooted | Unrooted]
+    },
+    parameters={
+        'tip_labels': Str
+    },
+    outputs= [('rooted_tree', Phylogeny[Rooted])],
+    input_descriptions={
+        'tree': 'Tree where tip identifiers are the feature identifiers to '
+                'be searched for rooting via the lowest common ancestor (LCA).',
+    },
+    parameter_descriptions={
+        'tip_labels': 'Specified tree tip identifiers used to find the LCA '
+                      'node to root with. Must contain at least two tip '
+                      'identifiers, separated by a comma.'
+    },
+    output_descriptions={
+        'rooted_tree': 'Tree rooted, at the LCA derived from the tip_labels.'
+    },
+    name="Root a phylogeny to the lowest common ancestor (LCA) of specified "
+         "tree tip labels. ",
+    description="Uses a list of tree tip labels to determine the lowest "
+                "common ancestral (LCA) node. The tree is then rooted at "
+                "this node. "
+)
+
 
 plugin.pipelines.register_function(
     function=q2_phylogeny.align_to_tree_mafft_fasttree,
